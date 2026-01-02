@@ -21,8 +21,11 @@ def init_crawler():
         "https://www.khanacademy.org/",
         "https://www.nasa.gov/",
         "https://www.nationalgeographic.com/",
-        "https://www.ted.com/"
+        "https://www.ted.com/",
+        "https://www.youtube.com/",
+        "https://usaco.guide/dashboard/"
     ]
+
     print("Starting initial crawl...")
     crawl(seeds, max_pages=500, engine=engine)
     print("Initial crawl finished!")
