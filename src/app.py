@@ -11,9 +11,14 @@ def init_crawler():
         "https://en.wikipedia.org/wiki/Python_(programming_language)",
         "https://www.python.org/downloads/",
         "https://www.apple.com/",
+        "https://github.com/explore",
+        "https://stackoverflow.com/",
+        "https://www.bbc.com/news",
+        "https://www.onet.pl",
+        "https://codeforces.com"
     ]
     print("Starting initial crawl...")
-    crawl(seeds, max_pages=50, engine=engine)
+    crawl(seeds, max_pages=300, engine=engine)
     print("Initial crawl finished!")
 
 @app.route('/')
@@ -39,5 +44,6 @@ def search():
     return jsonify(results)
 
 if __name__ == '__main__':
-    init_crawler()
+    crawler_thread = threading.Thread(target=init_crawler)
+    crawler_thread.start()
     app.run(debug=True, use_reloader=False)
