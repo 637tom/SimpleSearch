@@ -11,5 +11,5 @@ class Document:
 class SearchEngine:
 
     def __init__(self):
-        self.documents: List[Document]
-        self.index: Dict[str, List[int]] = {}
+        self.documents: List[Document] = []
+        self.index: Dict[str, List[int]] = {} 

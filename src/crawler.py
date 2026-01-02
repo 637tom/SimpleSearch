@@ -1,4 +1,5 @@
 import requests
+from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from models import SearchEngine, Document
 from tokenizer import tokenize
@@ -34,11 +35,11 @@ def crawl(seeds: list, max_pages: int, engine: SearchEngine):
                 engine.index[word].append(doc_id)
                 
             seen.add(url)   
-            printf(f"Crawled: {url}")
+            print(f"Crawled: {url}")
 
             for link in soup.find_all('a', href=True):
                 full_url = urljoin(url, link['href'])
-                if full_url not in seen:
+                if full_url not in seen and full_url.startswith(('http://', 'https://')):
                     queue.append(full_url)
         except Exception as e:
             print(f"Failed to crawl {url}: {e}")    
