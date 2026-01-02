@@ -15,10 +15,16 @@ def init_crawler():
         "https://stackoverflow.com/",
         "https://www.bbc.com/news",
         "https://www.onet.pl",
-        "https://codeforces.com"
+        "https://codeforces.com",
+        "https://atcoder.jp",
+        "https://www.wikipedia.org/",
+        "https://www.khanacademy.org/",
+        "https://www.nasa.gov/",
+        "https://www.nationalgeographic.com/",
+        "https://www.ted.com/"
     ]
     print("Starting initial crawl...")
-    crawl(seeds, max_pages=300, engine=engine)
+    crawl(seeds, max_pages=500, engine=engine)
     print("Initial crawl finished!")
 
 @app.route('/')
