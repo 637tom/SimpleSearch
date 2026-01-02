@@ -39,7 +39,6 @@ def search():
     return jsonify(results)
 
 if __name__ == '__main__':
-    # Run crawler in a separate thread so it doesn't block server startup
     crawler_thread = threading.Thread(target=init_crawler)
     crawler_thread.start()
     app.run(debug=True, use_reloader=False)
