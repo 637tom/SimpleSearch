@@ -30,6 +30,7 @@ async function performSearch() {
             li.innerHTML = `
                 <div class="result-title"><a href="${result.url}" target="_blank">${result.title}</a></div>
                 <div class="result-url">${result.url}</div>
+                <div class="result-snippet">${result.snippet}</div>
             `;
             resultsContainer.appendChild(li);
         });
