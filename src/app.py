@@ -34,6 +34,27 @@ def init_crawler():
 def home():
     return render_template('index.html')
 
+def get_snippet(text: str, query: str) -> str:
+    query_lower = query.lower()
+    text_lower = text.lower()
+    
+    try:
+        start_index = text_lower.index(query_lower)
+        # Get ~50 chars before and after
+        start = max(0, start_index - 50)
+        end = min(len(text), start_index + len(query) + 50)
+        snippet = text[start:end]
+        
+        # Add ellipsis
+        if start > 0:
+            snippet = "..." + snippet
+        if end < len(text):
+            snippet = snippet + "..."
+            
+        return snippet
+    except ValueError:
+        return text[:100] + "..." # Fallback
+
 @app.route('/api/search')
 def search():
     query = request.args.get('q', '').lower()
@@ -47,7 +68,8 @@ def search():
             doc = engine.documents[doc_id]
             results.append({
                 'title': doc.title,
-                'url': doc.url
+                'url': doc.url,
+                'snippet': get_snippet(doc.content, query)
             })
     
     return jsonify(results)
