@@ -67,6 +67,12 @@ button:hover {
     font-size: 14px;
 }
 
+.result-snippet {
+    color: #ccc;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 .no-results {
     color: #aaa;
     text-align: center;
