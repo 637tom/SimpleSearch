@@ -25,7 +25,7 @@ def init_crawler():
         "https://www.youtube.com/",
         "https://usaco.guide/dashboard/",
         "https://www.w3schools.com",
-        "https://leetcode.com",
+        "https://leetcode.com"
     ]
 
     print("Starting initial crawl...")
