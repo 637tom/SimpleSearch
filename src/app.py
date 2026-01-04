@@ -23,11 +23,13 @@ def init_crawler():
         "https://www.nationalgeographic.com/",
         "https://www.ted.com/",
         "https://www.youtube.com/",
-        "https://usaco.guide/dashboard/"
+        "https://usaco.guide/dashboard/",
+        "https://www.w3schools.com",
+        "https://leetcode.com",
     ]
 
     print("Starting initial crawl...")
-    crawl(seeds, max_pages=500, engine=engine)
+    crawl(seeds, max_pages=1000, engine=engine)
     print("Initial crawl finished!")
 
 @app.route('/')
@@ -40,12 +42,10 @@ def get_snippet(text: str, query: str) -> str:
     
     try:
         start_index = text_lower.index(query_lower)
-        # Get ~50 chars before and after
         start = max(0, start_index - 50)
         end = min(len(text), start_index + len(query) + 50)
         snippet = text[start:end]
         
-        # Add ellipsis
         if start > 0:
             snippet = "..." + snippet
         if end < len(text):
@@ -53,7 +53,7 @@ def get_snippet(text: str, query: str) -> str:
             
         return snippet
     except ValueError:
-        return text[:100] + "..." # Fallback
+        return text[:100] + "..."
 
 @app.route('/api/search')
 def search():
